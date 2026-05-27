@@ -25,4 +25,14 @@ void toGrayscale(CompressedImage& img);
 
 template <typename Image>
 void mirror(Image& img, bool horizontal = false) {
+    if (img.width == 0 || img.height == 0 || img.image_data.empty()) {
+        return;
+    }
+    if (horizontal) {
+        for (auto& row : img.image_data) {
+            reverse(row.begin(), row.end());
+        }
+    } else {
+        reverse(img.image_data.begin(), img.image_data.end());
+    }
 }
